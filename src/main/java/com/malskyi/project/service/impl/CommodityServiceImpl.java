@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.malskyi.project.domain.CommodityDTO;
-import com.malskyi.project.entity.Category;
 import com.malskyi.project.entity.Commodity;
 import com.malskyi.project.exceptions.CommodityNotFoundException;
-import com.malskyi.project.repository.CategoryRepository;
 import com.malskyi.project.repository.CommodityRepository;
-import com.malskyi.project.repository.ProducerRepository;
 import com.malskyi.project.service.CommodityService;
 import com.malskyi.project.service.cloudinary.CloudinaryService;
 import com.malskyi.project.service.utils.ObjectMapperUtils;

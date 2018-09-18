@@ -27,7 +27,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 	
 	@Override
 	public void createOrder(UserOrderDTO userOrderDTO) {
-		userOrderDTO.setUserOrderStringId(stringUtils.generate(30));
+		userOrderDTO.setUserOrderId(stringUtils.generate(30));
 		orderRepository.save(objectMapperUtils.map(userOrderDTO, UserOrder.class));
 		
 	}
@@ -40,6 +40,18 @@ public class UserOrderServiceImpl implements UserOrderService {
 	@Override
 	public List<UserOrderDTO> getAll() {
 		return objectMapperUtils.mapAll(orderRepository.findAll(), UserOrderDTO.class);
+	}
+
+	@Override
+	public void updateUserOrder(UserOrderDTO userOrderDTO) {
+		UserOrderDTO dto = userOrderDTO;
+		orderRepository.delete(objectMapperUtils.map(userOrderDTO, UserOrder.class));
+		orderRepository.save(objectMapperUtils.map(dto, UserOrder.class));
+	}
+
+	@Override
+	public void deleteUserOrder(UserOrderDTO userOrderDTO) {
+		orderRepository.delete(objectMapperUtils.map(userOrderDTO, UserOrder.class));
 	}
 
 }

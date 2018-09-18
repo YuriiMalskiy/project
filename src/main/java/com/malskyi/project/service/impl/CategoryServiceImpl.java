@@ -24,9 +24,9 @@ public class CategoryServiceImpl implements CategoryService{
 	private StringUtils stringUtils;
 	
 	@Override
-	public void createCategory(CategoryDTO category) {
-		category.setCategoryId(stringUtils.generate());
-		categoryRepository.save(objectMapperUtils.map(category, Category.class));
+	public void createCategory(CategoryDTO categoryDTO) {
+		categoryDTO.setCategoryId(stringUtils.generate());
+		categoryRepository.save(objectMapperUtils.map(categoryDTO, Category.class));
 	}
 
 	@Override
@@ -37,6 +37,11 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void updateCategory(CategoryDTO categoryDTO) {
 		 categoryRepository.save(objectMapperUtils.map(categoryDTO, Category.class));
+	}
+
+	@Override
+	public void deleteCategory(CategoryDTO categoryDTO) {
+		categoryRepository.delete(objectMapperUtils.map(categoryDTO, Category.class));		
 	}
 
 }

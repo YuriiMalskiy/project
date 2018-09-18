@@ -18,4 +18,8 @@ public interface UserEntityService {
 	UserEntityDTO findByUsername(String username);
 	
 	String signin(String username, String password);
+	
+	void deleteUser(UserEntityDTO userEntityDTO);
+	
+	void updateUser(UserEntityDTO userEntityDTO);
 }

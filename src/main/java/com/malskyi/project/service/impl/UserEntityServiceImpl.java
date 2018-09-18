@@ -45,10 +45,8 @@ public class UserEntityServiceImpl implements UserEntityService{
 			dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 			
 			userRepository.save(objectMapperUtils.map(dto, UserEntity.class));
-
-		}	
-		
-		
+			
+		}		
 	}
 
 	@Override
@@ -75,6 +73,18 @@ public class UserEntityServiceImpl implements UserEntityService{
 	public String signin(String username, String password) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRole());
+	}
+
+	@Override
+	public void deleteUser(UserEntityDTO userEntityDTO) {
+		userRepository.delete(objectMapperUtils.map(userEntityDTO, UserEntity.class));
+	}
+
+	@Override
+	public void updateUser(UserEntityDTO userEntityDTO) {
+		UserEntityDTO dto = userEntityDTO;
+		userRepository.delete(objectMapperUtils.map(userEntityDTO, UserEntity.class));
+		userRepository.save(objectMapperUtils.map(dto, UserEntity.class));
 	}
 
 }

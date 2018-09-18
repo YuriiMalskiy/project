@@ -31,4 +31,16 @@ public class CategoryController {
 	public ResponseEntity<List<CategoryDTO>> getCategories(){
 		return new ResponseEntity<List<CategoryDTO>>(categoryService.getAll(), HttpStatus.OK);
 	}
+	
+	@PostMapping("delete")
+	public ResponseEntity<Void> deleteCategory(@RequestBody CategoryDTO dto){
+		categoryService.deleteCategory(dto);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@PostMapping("update")
+	public ResponseEntity<Void> updateCategory(@RequestBody CategoryDTO dto){
+		categoryService.updateCategory(dto);
+		return new ResponseEntity<Void>(HttpStatus.OK);		
+	}
 }

@@ -40,4 +40,9 @@ public class ProducerServiceImpl implements ProducerService{
 		return objectMapperUtils.mapAll(producerRepository.findAll(), ProducerDTO.class);
 	}
 
+	@Override
+	public void deleteProducer(ProducerDTO producerDTO) {
+		producerRepository.delete(objectMapperUtils.map(producerDTO, Producer.class));
+	}
+
 }

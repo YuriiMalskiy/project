@@ -12,4 +12,9 @@ public interface UserOrderService {
 	List<UserOrderDTO> getOrdersByDate(LocalDate date);
 	
 	List<UserOrderDTO> getAll();
+	
+	void updateUserOrder(UserOrderDTO userOrderDTO);
+	
+	void deleteUserOrder(UserOrderDTO userOrderDTO);
+	
 }

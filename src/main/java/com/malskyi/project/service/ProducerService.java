@@ -12,4 +12,5 @@ public interface ProducerService {
 	
 	List<ProducerDTO> getAll();
 	
+	void deleteProducer(ProducerDTO producerDTO);
 }

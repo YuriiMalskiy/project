@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.malskyi.project.domain.UserOrderDTO;
@@ -39,4 +38,12 @@ public class OrderController {
 	public ResponseEntity<List<UserOrderDTO>> getOrdersByDate(@PathVariable("orderDate") LocalDate date){
 		return new ResponseEntity<List<UserOrderDTO>>(orderService.getOrdersByDate(date), HttpStatus.OK);
 	}
+	
+	@PostMapping("update")
+	public ResponseEntity<Void> updateUserOrder(@RequestBody UserOrderDTO dto){
+		orderService.updateUserOrder(dto);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	
 }

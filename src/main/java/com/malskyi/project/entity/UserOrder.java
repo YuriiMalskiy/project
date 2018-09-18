@@ -25,7 +25,7 @@ public class UserOrder extends BaseEntity{
 	private LocalDate orderDate;
 	
 	@Column(unique = true)
-	private String UserOrderStringId;
+	private String UserOrderId;
 	
 	@Column(columnDefinition = "DECIMAL(6,2) DEFAULT '0.00'")
 	private BigDecimal price;

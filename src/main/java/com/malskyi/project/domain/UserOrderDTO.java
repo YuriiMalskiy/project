@@ -17,7 +17,7 @@ public class UserOrderDTO {
 	@JsonIgnore
 	private Long id;
 	
-	private String UserOrderStringId;
+	private String UserOrderId;
 	private LocalDate orderDate;	
 	private BigDecimal price;
 	private Customer customer;

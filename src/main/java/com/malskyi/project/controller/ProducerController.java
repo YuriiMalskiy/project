@@ -32,4 +32,15 @@ public class ProducerController {
 		return new ResponseEntity<List<ProducerDTO>>(producerService.getAll(), HttpStatus.OK);
 	}
 	
+	@PostMapping("update")
+	public ResponseEntity<Void> updateProducer(@RequestBody ProducerDTO dto){
+		producerService.updateProducer(dto);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@PostMapping("delete")
+	public ResponseEntity<Void> deleteProducer(@RequestBody ProducerDTO dto){
+		producerService.deleteProducer(dto);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 }
