@@ -19,4 +19,6 @@ public interface CommodityService {
 	List<CommodityDTO> getAllByProducerId(String producerId);
 	
 	void uploadImage(MultipartFile file, String commodityId);
+	
+	List<CommodityDTO> getAll();
 }

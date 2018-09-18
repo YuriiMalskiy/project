@@ -28,19 +28,23 @@ public class CommodityController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-	@GetMapping
+	@GetMapping("{categoryId}")
 	public ResponseEntity<List<CommodityDTO>> getCommodityByCategory(@PathVariable("categoryId") String categoryId){
 		List<CommodityDTO> byCategory = commodityService.getAllByCategoryId(categoryId);
 		return new ResponseEntity<List<CommodityDTO>>(byCategory,HttpStatus.OK);
 	}
 	
-	@GetMapping
+	@GetMapping("{producerId}")
 	public ResponseEntity<List<CommodityDTO>> getCommodityByProducer(@PathVariable("producerId") String producerId){
 		List<CommodityDTO> byCategory = commodityService.getAllByProducerId(producerId);
 		
 		return new ResponseEntity<List<CommodityDTO>>(byCategory,HttpStatus.OK);
 	}
 	
+	@GetMapping
+	public ResponseEntity<List<CommodityDTO>> getCommodities(){
+		return new ResponseEntity<List<CommodityDTO>>(commodityService.getAll(), HttpStatus.OK);
+	}
 }
 
 
