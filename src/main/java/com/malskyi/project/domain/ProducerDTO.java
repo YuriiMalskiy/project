@@ -12,7 +12,7 @@ public class ProducerDTO {
 	@JsonIgnore
 	private Long id;
 
-	private String ProducerStringId;
+	private String producerId;
 	
 	private String name;
 	

@@ -10,6 +10,9 @@ public interface CommodityRepository  extends JpaRepository<Commodity, Long>{
 
 	Commodity findByCommodityStringId(String commodityStringId);
 	
-	Commodity findByCategoryId(String categoryId);
+	Commodity findAllByCategoryId(String categoryId);
+	
+	Commodity findAllByProducerId(String producerId);
+
 	
 }

@@ -14,6 +14,7 @@ import com.malskyi.project.entity.Commodity;
 import com.malskyi.project.exceptions.CommodityNotFoundException;
 import com.malskyi.project.repository.CategoryRepository;
 import com.malskyi.project.repository.CommodityRepository;
+import com.malskyi.project.repository.ProducerRepository;
 import com.malskyi.project.service.CommodityService;
 import com.malskyi.project.service.cloudinary.CloudinaryService;
 import com.malskyi.project.service.utils.ObjectMapperUtils;
@@ -25,8 +26,11 @@ public class CommodityServiceImpl implements CommodityService{
 	@Autowired
 	private CommodityRepository commodityRepository;
 	
-	@Autowired
-	private CategoryRepository categoryRepository;
+//	@Autowired
+//	private CategoryRepository categoryRepository;
+//	
+//	@Autowired
+//	private ProducerRepository producerRepository;
 	
 	@Autowired
 	private ObjectMapperUtils objectMapperUtils;
@@ -61,12 +65,26 @@ public class CommodityServiceImpl implements CommodityService{
 //		return objectMapperUtils.mapAll(commodityRepository.findByCategoryId(categoryId), Category.class);
 	return null;	
 	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public List<CommodityDTO> getAllByProducerId(String producerId) {
-//		
+		/*
+		List<Commodity> list1 = commodityRepository.findAll();
+		List<Commodity> list2 = null;
+		for(int i = 0; i < list1.size(); i++) {
+			if(list1.get(i).getProducer() == producerRepository.findByProducerStringId(producerId)) {
+				list2.add(list1.get(i));
+			}
+		}
+		return objectMapperUtils.mapAll(list2/*commodityRepository.findAllByProducerId(producerId), CommodityDTO.class);*/
 		return null;
 	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void uploadImage(MultipartFile file, String commodityStringId) {
@@ -79,6 +97,11 @@ public class CommodityServiceImpl implements CommodityService{
 		
 		commodity.setImageURL(imageURL);
 		commodityRepository.save(commodity);		
+	}
+
+	@Override
+	public List<CommodityDTO> getAll() {
+		return objectMapperUtils.mapAll(commodityRepository.findAll(), CommodityDTO.class);
 	}
 
 	

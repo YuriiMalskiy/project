@@ -26,7 +26,7 @@ public class ProducerServiceImpl implements ProducerService{
 	
 	@Override
 	public void createProducer(ProducerDTO producerDTO) {
-		producerDTO.setProducerStringId(stringUtils.generate());
+		producerDTO.setProducerId(stringUtils.generate());
 		producerRepository.save(objectMapperUtils.map(producerDTO, Producer.class));
 	}
 

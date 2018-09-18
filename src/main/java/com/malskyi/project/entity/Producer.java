@@ -17,10 +17,9 @@ import lombok.Setter;
 @Table(indexes = @Index(columnList = "name"))
 public class Producer extends BaseEntity{
 
-	@Column(unique = true)
-	private String ProducerStringId;
-	
 	@Column(nullable = false, unique = true)
 	private String name;
-	
+
+	@Column(unique = true)
+	private String producerId;
 }
