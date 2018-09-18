@@ -12,6 +12,8 @@ import com.malskyi.project.service.utils.StringUtils;
 
 import static com.malskyi.project.constants.PaymentStatus.*;
 
+import java.util.List;
+
 @Service
 public class PaymentServiceImpl implements PaymentService{
 
@@ -36,6 +38,11 @@ public class PaymentServiceImpl implements PaymentService{
 		paymentDTO.setStatus(PAYMENT_COMPLETED);
 		paymentRepository.save(objectMapperUtils.map(paymentDTO, Payment.class));
 		
+	}
+
+	@Override
+	public List<PaymentDTO> getAll() {
+		return objectMapperUtils.mapAll(paymentRepository.findAll(), PaymentDTO.class);
 	}
 
 }

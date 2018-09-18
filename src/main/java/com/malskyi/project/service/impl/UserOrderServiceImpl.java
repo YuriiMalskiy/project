@@ -1,5 +1,6 @@
 package com.malskyi.project.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,13 @@ public class UserOrderServiceImpl implements UserOrderService {
 	}
 
 	@Override
-	public List<UserOrderDTO> getOrdersByDate(UserOrderDTO userOrderDTO) {
-		//?
-		//?
-		//?
-		//?
-		//?
-		//?
-		
-		return null;
+	public List<UserOrderDTO> getOrdersByDate(LocalDate date) {
+		return objectMapperUtils.mapAll(orderRepository.findAllByOrderDate(date), UserOrderDTO.class);
+	}
+
+	@Override
+	public List<UserOrderDTO> getAll() {
+		return objectMapperUtils.mapAll(orderRepository.findAll(), UserOrderDTO.class);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.malskyi.project.service;
 import java.util.List;
 
 import com.malskyi.project.domain.CategoryDTO;
+import com.malskyi.project.entity.Category;
 
 public interface CategoryService {
 

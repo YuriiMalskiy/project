@@ -1,5 +1,7 @@
 package com.malskyi.project.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,11 @@ public class ProducerServiceImpl implements ProducerService{
 	@Override
 	public void updateProducer(ProducerDTO producerDTO) {
 		producerRepository.save(objectMapperUtils.map(producerDTO, Producer.class));
+	}
+
+	@Override
+	public List<ProducerDTO> getAll() {
+		return objectMapperUtils.mapAll(producerRepository.findAll(), ProducerDTO.class);
 	}
 
 }
