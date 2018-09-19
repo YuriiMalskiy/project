@@ -9,6 +9,7 @@ import com.malskyi.project.entity.Producer;
 public interface ProducerRepository extends JpaRepository<Producer, Long>{
 
 	Producer findByProducerId(String producerId);	
+	
 }
 
 

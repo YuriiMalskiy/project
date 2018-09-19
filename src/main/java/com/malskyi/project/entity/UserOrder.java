@@ -27,7 +27,7 @@ public class UserOrder extends BaseEntity{
 	@Column(unique = true)
 	private String UserOrderId;
 	
-	@Column(columnDefinition = "DECIMAL(6,2) DEFAULT '0.00'")
+	@Column(nullable = false, columnDefinition = "DECIMAL(6,2)")
 	private BigDecimal price;
 	
 	@ManyToOne

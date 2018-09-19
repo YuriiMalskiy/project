@@ -11,6 +11,6 @@ import com.malskyi.project.entity.UserOrder;
 @Repository
 public interface UserOrderRepository extends JpaRepository<UserOrder, Long> {
 
-	List<UserOrder> findAllByOrderDate(LocalDate date);
+	List<UserOrder> findByOrderDate(LocalDate date);
 
 }

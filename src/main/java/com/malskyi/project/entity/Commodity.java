@@ -30,7 +30,7 @@ public class Commodity extends BaseEntity{
 	private String imageURL;
 	private int count;
 	
-	@Column(columnDefinition = "DECIMAL(10,2) DEFAULT '0.00'")
+	@Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
 	private BigDecimal price;
 	
 	@OneToOne

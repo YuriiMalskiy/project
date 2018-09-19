@@ -2,15 +2,20 @@ package com.malskyi.project.service.impl;
 
 import static com.malskyi.project.constants.ErrorMessages.NO_RECORD_FOUND;
 
+import java.awt.print.Book;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.malskyi.project.domain.CommodityDTO;
 import com.malskyi.project.entity.Commodity;
 import com.malskyi.project.exceptions.CommodityNotFoundException;
+import com.malskyi.project.repository.CategoryRepository;
 import com.malskyi.project.repository.CommodityRepository;
 import com.malskyi.project.service.CommodityService;
 import com.malskyi.project.service.cloudinary.CloudinaryService;
@@ -56,33 +61,14 @@ public class CommodityServiceImpl implements CommodityService{
 
 	@Override
 	public List<CommodityDTO> getAllByCategoryId(String categoryId) {
-//		Category category = categoryRepository.findByCategoryId(categoryId);
-//		
-//		
-//		return objectMapperUtils.mapAll(commodityRepository.findByCategoryId(categoryId), Category.class);
-	return null;	
+		return objectMapperUtils.mapAll(commodityRepository.findByCategoryId(categoryId), CommodityDTO.class);
 	}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public List<CommodityDTO> getAllByProducerId(String producerId) {
-		/*
-		List<Commodity> list1 = commodityRepository.findAll();
-		List<Commodity> list2 = null;
-		for(int i = 0; i < list1.size(); i++) {
-			if(list1.get(i).getProducer() == producerRepository.findByProducerStringId(producerId)) {
-				list2.add(list1.get(i));
-			}
-		}
-		return objectMapperUtils.mapAll(list2/*commodityRepository.findAllByProducerId(producerId), CommodityDTO.class);*/
-		return null;
+		return objectMapperUtils.mapAll(commodityRepository.findByProducerId(producerId), CommodityDTO.class);
 	}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 	@Override
 	public void uploadImage(MultipartFile file, String commodityStringId) {
 		String imageURL = cloudinaryService.uploadFile(file, "commodity_name: " + commodityRepository.findByCommodityStringId(commodityStringId).getName());
@@ -99,6 +85,15 @@ public class CommodityServiceImpl implements CommodityService{
 	@Override
 	public List<CommodityDTO> getAll() {
 		return objectMapperUtils.mapAll(commodityRepository.findAll(), CommodityDTO.class);
+	}
+
+	@Override
+	public List<CommodityDTO> getAll(Pageable pageable) {
+		
+		Page<Commodity> page = commodityRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+		List<Commodity> commodities = page.getContent();
+		
+		return objectMapperUtils.mapAll(commodities, CommodityDTO.class);
 	}
 
 	

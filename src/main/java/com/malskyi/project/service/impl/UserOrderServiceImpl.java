@@ -34,7 +34,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 	@Override
 	public List<UserOrderDTO> getOrdersByDate(LocalDate date) {
-		return objectMapperUtils.mapAll(orderRepository.findAllByOrderDate(date), UserOrderDTO.class);
+		return objectMapperUtils.mapAll(orderRepository.findByOrderDate(date), UserOrderDTO.class);
 	}
 
 	@Override

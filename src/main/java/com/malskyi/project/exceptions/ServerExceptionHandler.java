@@ -23,7 +23,7 @@ public class ServerExceptionHandler {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@ExceptionHandler
+	@ExceptionHandler(value = CommodityNotFoundException.class)
 	public ResponseEntity<ErrorMessage> hadleCommodityNotFoundException(UserServiceException e, WebRequest req){
 		ErrorMessage errorMessage = new ErrorMessage(e.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NO_CONTENT);

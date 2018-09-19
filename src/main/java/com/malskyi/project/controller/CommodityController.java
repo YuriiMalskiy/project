@@ -3,6 +3,8 @@ package com.malskyi.project.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +30,13 @@ public class CommodityController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-	@GetMapping("{categoryId}")
+	@GetMapping("/category/{categoryId}")
 	public ResponseEntity<List<CommodityDTO>> getCommodityByCategory(@PathVariable("categoryId") String categoryId){
 		List<CommodityDTO> byCategory = commodityService.getAllByCategoryId(categoryId);
 		return new ResponseEntity<List<CommodityDTO>>(byCategory,HttpStatus.OK);
 	}
 	
-	@GetMapping("{producerId}")
+	@GetMapping("/producer/{producerId}")
 	public ResponseEntity<List<CommodityDTO>> getCommodityByProducer(@PathVariable("producerId") String producerId){
 		List<CommodityDTO> byCategory = commodityService.getAllByProducerId(producerId);
 		
@@ -45,6 +47,12 @@ public class CommodityController {
 	public ResponseEntity<List<CommodityDTO>> getCommodities(){
 		return new ResponseEntity<List<CommodityDTO>>(commodityService.getAll(), HttpStatus.OK);
 	}
+
+	@GetMapping("/pages")
+	public ResponseEntity<List<CommodityDTO>> getCommoditiesByPage(@PageableDefault Pageable pageable){		
+		return new ResponseEntity<List<CommodityDTO>>(commodityService.getAll(pageable), HttpStatus.OK);
+	}
+	
 }
 
 

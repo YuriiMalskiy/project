@@ -30,7 +30,7 @@ public class Cart extends BaseEntity{
 	@Column(nullable = false, unique = true, length = 30)
 	private String cartNumber;
 	
-	@Column(nullable = false, columnDefinition="DEFAUL '1'")
+	@Column(nullable = false)
 	private int count;
 	
 }
